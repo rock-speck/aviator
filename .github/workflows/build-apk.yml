@@ -1,4 +1,4 @@
-name: Build APK 1.6
+name: Build APK 1.7
 
 on:
   workflow_dispatch:
@@ -23,11 +23,11 @@ jobs:
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
           sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
-      - name: Extract known-good 1.2 based project
+      - name: Extract 1.7 project
         run: |
           rm -rf buildsrc
           mkdir buildsrc
-          unzip -q aviator-android-final-1.6.zip -d buildsrc
+          unzip -q aviator-android-final-1.7.zip -d buildsrc
 
       - name: Setup Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
@@ -41,5 +41,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: aviator-android-1.6-debug-apk
+          name: aviator-android-1.7-debug-apk
           path: buildsrc/app/build/outputs/apk/debug/app-debug.apk
