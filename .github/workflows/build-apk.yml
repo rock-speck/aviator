@@ -33,7 +33,7 @@ jobs:
           rm -rf buildsrc
           mkdir buildsrc
 
-          unzip -q aviator-android-final-1.3.zip -d buildsrc
+          unzip -q aviator-android-final-1.4.zip -d buildsrc
 
       - name: Setup Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
