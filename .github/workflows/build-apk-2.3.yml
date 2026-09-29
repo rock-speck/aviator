@@ -1,3 +1,4 @@
+name: Build APK 2.4 Test Signal
 on:
   workflow_dispatch:
 jobs:
@@ -16,11 +17,11 @@ jobs:
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH"
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
           sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-      - name: Extract 2.3 project
+      - name: Extract 2.4 project
         run: |
           rm -rf buildsrc
           mkdir buildsrc
-          unzip -q aviator-android-final-2.3-fixed.zip -d buildsrc
+          unzip -q aviator-android-final-2.4-test-signal.zip -d buildsrc
       - name: Setup Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
         with:
@@ -31,5 +32,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: aviator-android-2.3-debug-apk
+          name: aviator-android-2.4-test-signal-debug-apk
           path: buildsrc/app/build/outputs/apk/debug/app-debug.apk
